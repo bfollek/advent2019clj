@@ -14,7 +14,11 @@
 (defn fuel-required-meta
   "So, for each module mass, calculate its fuel and add it to the total. Then, treat the fuel amount you just calculated as the input mass and repeat the process, continuing until a fuel requirement is zero or negative."
   [mass]
-  (reduce + (rest (take-while #(< 0 %) (iterate fuel-required mass)))))
+  (->> mass
+       (iterate fuel-required)
+       (take-while #(< 0 %))
+       rest ; Drop the mass we started with
+       (reduce +)))
 
 (defn calc-fuel
   "The only difference between part-1 and part-2 is the function we use to calculate fuel."
