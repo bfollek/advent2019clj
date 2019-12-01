@@ -11,6 +11,16 @@
       (quot 3)
       (- 2)))
 
+(defn fuel-required-meta
+  "So, for each module mass, calculate its fuel and add it to the total. Then, treat the fuel amount you just calculated as the input mass and repeat the process, continuing until a fuel requirement is zero or negative."
+  [mass]
+  (loop [f (fuel-required mass)
+         total f]
+    (let [f' (fuel-required f)]
+      (if (< f' 1)
+        total
+        (recur f' (+ total f'))))))
+
 (defn part-1
   "...individually calculate the fuel needed for the mass of each module (your puzzle input), then add together all the fuel values."
   [file-name]
@@ -18,4 +28,13 @@
     (->> (line-seq rdr)
          (map rh/to-int)
          (map fuel-required)
+         (reduce +))))
+
+(defn part-2
+  "What is the sum of the fuel requirements for all of the modules on your spacecraft when also taking into account the mass of the added fuel? (Calculate the fuel requirements for each module separately, then add them all up at the end.)"
+  [file-name]
+  (with-open [rdr (io/reader file-name)]
+    (->> (line-seq rdr)
+         (map rh/to-int)
+         (map fuel-required-meta)
          (reduce +))))
