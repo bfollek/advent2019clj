@@ -21,20 +21,21 @@
         total
         (recur f' (+ total f'))))))
 
-(defn part-1
-  "...individually calculate the fuel needed for the mass of each module (your puzzle input), then add together all the fuel values."
-  [file-name]
+(defn calc-fuel
+  "The only difference between part-1 and part-2 is the function we use to calculate fuel."
+  [file-name fuel-func]
   (with-open [rdr (io/reader file-name)]
     (->> (line-seq rdr)
          (map rh/to-int)
-         (map fuel-required)
+         (map fuel-func)
          (reduce +))))
+
+(defn part-1
+  "...individually calculate the fuel needed for the mass of each module (your puzzle input), then add together all the fuel values."
+  [file-name]
+  (calc-fuel file-name fuel-required))
 
 (defn part-2
   "What is the sum of the fuel requirements for all of the modules on your spacecraft when also taking into account the mass of the added fuel? (Calculate the fuel requirements for each module separately, then add them all up at the end.)"
   [file-name]
-  (with-open [rdr (io/reader file-name)]
-    (->> (line-seq rdr)
-         (map rh/to-int)
-         (map fuel-required-meta)
-         (reduce +))))
+  (calc-fuel file-name fuel-required-meta))
