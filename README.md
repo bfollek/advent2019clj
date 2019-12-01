@@ -1,36 +1,14 @@
 # advent2019clj
 
-FIXME: description
+Advent of Code 2019 in clojure.
 
-## Installation
+#### Day 1
 
-Download from http://example.com/FIXME.
-
-## Usage
-
-FIXME: explanation
-
-    $ java -jar advent2019clj-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+In my first version of Part 2, I used loop/recur in *(fuel-required-meta)*. Whenever I drop back into clojure, it takes me a while to shuck the imperative mindset. Eventually I remembered (iterate), and a simpler, more functional solution IMO.
 
 ## License
 
-Copyright © 2019 FIXME
+Copyright © 2019 Bob Follek
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
