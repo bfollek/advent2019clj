@@ -4,7 +4,7 @@ Advent of Code 2019 in clojure.
 
 #### Day 1
 
-In my first version of Part 2, I used (loop)/(recur) in **(fuel-required-meta)**. Whenever I drop back into clojure, it takes me a while to shuck the imperative mindset. Eventually I remembered (iterate), and a simpler, more functional solution IMO.
+In my first version of Part 2, I used (loop)/(recur) in **(fuel-required-meta)**. Whenever I drop back into clojure, it takes me a while to shuck the imperative mindset. Eventually I remembered (iterate), and ended up with a simpler, more functional solution IMO.
 
 ## License
 
